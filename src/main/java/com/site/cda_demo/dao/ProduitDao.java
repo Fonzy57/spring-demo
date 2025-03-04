@@ -7,5 +7,4 @@ import org.springframework.stereotype.Repository;
 @Repository // Crée une dépendance
 public interface ProduitDao extends JpaRepository<Produit, Integer> {
 
-
 }
