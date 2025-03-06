@@ -2,6 +2,7 @@ package com.site.cda_demo.controller;
 
 import com.site.cda_demo.dao.ProduitDao;
 import com.site.cda_demo.model.Produit;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,8 +50,9 @@ public class ProduitController {
     return new ResponseEntity<>(optionalProduit.get(), HttpStatus.OK);
   }
 
+
   @PostMapping("/produit")
-  public ResponseEntity<Produit> save(@RequestBody Produit produit) {
+  public ResponseEntity<Produit> save(@RequestBody @Valid Produit produit) {
     produitDao.save(produit);
 
     return new ResponseEntity<>(produit, HttpStatus.CREATED);
@@ -71,7 +73,7 @@ public class ProduitController {
 
   // PUT pour modifier tout l'objet
   @PutMapping("/produit/{id}")
-  public ResponseEntity<Produit> update(@PathVariable int id, @RequestBody Produit produit) {
+  public ResponseEntity<Produit> update(@PathVariable int id, @RequestBody @Valid Produit produit) {
 
     Optional<Produit> optionalProduit = produitDao.findById(id);
 
