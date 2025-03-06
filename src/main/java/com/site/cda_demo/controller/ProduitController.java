@@ -16,7 +16,7 @@ public class ProduitController {
 
   protected ProduitDao produitDao;
 
-  @Autowired // Donne à ProduitController le ProduitDao
+  @Autowired // Donne à ProduitController le ProduitDao // Injection de dépendance
   public ProduitController(ProduitDao produitDao) {
     this.produitDao = produitDao;
   }
