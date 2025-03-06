@@ -24,4 +24,7 @@ public class Produit {
 
   protected float prix;
 
+  @ManyToOne
+  protected Etat etat;
+
 }
