@@ -1,5 +1,7 @@
 package com.site.cda_demo.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.site.cda_demo.view.AffichageCommande;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -21,14 +23,17 @@ public class Produit {
 
   @Column(nullable = false)
   @NotBlank
+  @JsonView(AffichageCommande.class)
   protected String nom;
 
   @Column(length = 15, nullable = false, unique = true)
   @Length(max = 15, min = 3)
   @NotBlank
+  @JsonView(AffichageCommande.class)
   protected String code;
 
   @Column(columnDefinition = "TEXT")
+  @JsonView(AffichageCommande.class)
   protected String description;
 
   @DecimalMin(value = "0.1")
@@ -36,6 +41,7 @@ public class Produit {
 
   @ManyToOne
   @JoinColumn(nullable = false)
+  @JsonView(AffichageCommande.class)
   protected Etat etat;
 
   @ManyToMany
@@ -45,6 +51,7 @@ public class Produit {
       // et la colonne en BDD s'apelle déjà 'produit_id'
       inverseJoinColumns = @JoinColumn(name = "etiquette_id")
   )
+  @JsonView(AffichageCommande.class)
   protected List<Etiquette> etiquettes = new ArrayList<>();
 
 }
