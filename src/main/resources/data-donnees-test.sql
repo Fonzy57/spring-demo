@@ -45,3 +45,9 @@ VALUES (1, 1), -- Yamaha MT-07 en promotion
        (3, 8), -- Triumph Bonneville customisée
        (2, 8), -- Triumph Bonneville en édition limitée
        (5, 8); -- Triumph Bonneville aussi en soldes
+
+INSERT INTO commande (date)
+VALUES ("2025-03-11");
+
+INSERT INTO ligne_commande (commande_id, quantite, prix_vente, produit_id)
+VALUES (1, 2, 7999, 1);
