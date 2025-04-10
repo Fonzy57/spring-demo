@@ -18,4 +18,7 @@ public class Etiquette {
   @Column(nullable = false)
   @JsonView(AffichageCommande.class)
   protected String nom;
+
+  @Column(nullable = false)
+  protected String couleur;
 }
