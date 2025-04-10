@@ -1,7 +1,11 @@
 package com.site.cda_demo.controller;
 
 import com.site.cda_demo.dao.ProduitDao;
+import com.site.cda_demo.model.Etat;
 import com.site.cda_demo.model.Produit;
+import com.site.cda_demo.security.IsAdministrateur;
+import com.site.cda_demo.security.IsRedacteur;
+import com.site.cda_demo.security.IsUtilisateur;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +31,7 @@ public class ProduitController {
    *
    * @return liste de produits
    */
+  @IsUtilisateur
   @GetMapping("/produits")
   public List<Produit> getAll() {
     return produitDao.findAll();
@@ -38,7 +43,9 @@ public class ProduitController {
    * @param id l'id du produit à retourner
    * @return 404 si aucun produit trouvé, ou statut 200 avec le produit
    */
+
   @GetMapping("/produit/{id}")
+  @IsAdministrateur
   public ResponseEntity<Produit> get(@PathVariable int id) {
 
     Optional<Produit> optionalProduit = produitDao.findById(id);
@@ -53,11 +60,20 @@ public class ProduitController {
 
   @PostMapping("/produit")
   public ResponseEntity<Produit> save(@RequestBody @Valid Produit produit) {
+
+    // Si le produit reçu n'a pas d'état alors, on indique qu'il est neuf par défaut
+    if (produit.getEtat() == null) {
+      Etat etatNeuf = new Etat();
+      etatNeuf.setId(1);
+      produit.setEtat(etatNeuf);
+    }
+
     produitDao.save(produit);
 
     return new ResponseEntity<>(produit, HttpStatus.CREATED);
   }
 
+  @IsRedacteur
   @DeleteMapping("/produit/{id}")
   public ResponseEntity<Produit> delete(@PathVariable int id) {
     Optional<Produit> optionalProduit = produitDao.findById(id);

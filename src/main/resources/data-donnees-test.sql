@@ -4,13 +4,18 @@ VALUES ('Neuf'),
        ('Occasion'),
        ('Reconditionné');
 
+INSERT INTO utilisateur(email, password, role)
+VALUES ('admin@toto.fr', '$2a$10$DY0yTyGpWioMo8ZGoiqy0eNrZL9oWpO6fFfBkA2WWhczsc9/yuE.m', 'ADMINISTRATEUR'),
+       ('user@toto.fr', '$2a$10$DY0yTyGpWioMo8ZGoiqy0eNrZL9oWpO6fFfBkA2WWhczsc9/yuE.m', 'UTILISATEUR'),
+       ('redacteur@toto.fr', '$2a$10$DY0yTyGpWioMo8ZGoiqy0eNrZL9oWpO6fFfBkA2WWhczsc9/yuE.m', 'REDACTEUR');
+
 -- Insérer les étiquettes des motos
-INSERT INTO etiquette (nom)
-VALUES ('Promotion'),
-       ('Édition limitée'),
-       ('Customisée'),
-       ('Véhicule électrique'),
-       ('Soldes');
+INSERT INTO etiquette (nom, couleur)
+VALUES ('Promotion', '#77ff77'),
+       ('Édition limitée', 'red'),
+       ('Customisée', 'green'),
+       ('Véhicule électrique', 'blue'),
+       ('Soldes', 'gray');
 
 -- Insérer des motos avec des états appropriés
 INSERT INTO produit (nom, code, description, prix, etat_id)
