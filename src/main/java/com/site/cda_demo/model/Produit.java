@@ -54,4 +54,22 @@ public class Produit {
   @JsonView(AffichageCommande.class)
   protected List<Etiquette> etiquettes = new ArrayList<>();
 
+  // TODO ICI POUR RESERVER QUELQUE CHOSE SELON UN ROLE BIEN PRECIS
+  @ManyToOne
+  @JoinColumn(nullable = false)
+  Utilisateur createur;
+
+  @Override
+  public String toString() {
+    return "Produit{" +
+        "id=" + id +
+        ", nom='" + nom + '\'' +
+        ", code='" + code + '\'' +
+        ", description='" + description + '\'' +
+        ", prix=" + prix +
+        ", etat=" + etat +
+        ", etiquettes=" + etiquettes +
+        ", createur=" + createur +
+        '}';
+  }
 }
