@@ -18,15 +18,15 @@ VALUES ('Promotion', '#77ff77'),
        ('Soldes', 'gray');
 
 -- Insérer des motos avec des états appropriés
-INSERT INTO produit (nom, code, description, prix, etat_id)
-VALUES ('Yamaha MT-07', 'yammt07', 'Moto roadster 689cc - 2024', 7599, 1),
-       ('Honda CBR500R', 'hondacbr', 'Sportive 471cc - 2023', 6799, 1),
-       ('Ducati Panigale V2', 'ducpani', 'Superbike 955cc - 2024', 18490, 1),
-       ('Harley-Davidson Iron 883', 'hd883', 'Custom 883cc - 2020', 8990, 2),
-       ('Kawasaki Ninja 650', 'kawn650', 'Sportive 649cc - 2021', 7490, 2),
-       ('BMW R 1250 GS', 'bmwgs', 'Trail 1254cc - 2022', 17990, 2),
-       ('Zero SR/F', 'zerosrf', 'Moto électrique - 2024', 20990, 1),
-       ('Triumph Bonneville T120 Custom', 'triumpht120', 'Custom 1200cc - 2019', 12490, 3);
+INSERT INTO produit (nom, code, description, prix, etat_id, createur_id)
+VALUES ('Yamaha MT-07', 'yammt07', 'Moto roadster 689cc - 2024', 7599, 1, 1),
+       ('Honda CBR500R', 'hondacbr', 'Sportive 471cc - 2023', 6799, 1, 1),
+       ('Ducati Panigale V2', 'ducpani', 'Superbike 955cc - 2024', 18490, 1, 1),
+       ('Harley-Davidson Iron 883', 'hd883', 'Custom 883cc - 2020', 8990, 2, 1),
+       ('Kawasaki Ninja 650', 'kawn650', 'Sportive 649cc - 2021', 7490, 2, 2),
+       ('BMW R 1250 GS', 'bmwgs', 'Trail 1254cc - 2022', 17990, 2, 2),
+       ('Zero SR/F', 'zerosrf', 'Moto électrique - 2024', 20990, 1, 3),
+       ('Triumph Bonneville T120 Custom', 'triumpht120', 'Custom 1200cc - 2019', 12490, 3, 3);
 
 -- Associer des motos aux étiquettes de manière logique
 INSERT INTO etiquette_produit (etiquette_id, produit_id)
