@@ -1,6 +1,7 @@
 package com.site.cda_demo.security;
 
 import com.site.cda_demo.model.Utilisateur;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,6 +10,7 @@ import java.util.Collection;
 import java.util.List;
 
 // Agit comme un wrapper
+@Getter
 public class AppUserDetails implements UserDetails {
 
   protected Utilisateur utilisateur;
