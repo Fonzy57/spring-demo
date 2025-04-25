@@ -2,6 +2,8 @@ package com.site.cda_demo.model;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.site.cda_demo.view.AffichageCommande;
+import com.site.cda_demo.view.AfficheProduitAdmin;
+import com.site.cda_demo.view.AfficheProduitClient;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -23,13 +25,13 @@ public class Produit {
 
   @Column(nullable = false)
   @NotBlank
-  @JsonView(AffichageCommande.class)
+  @JsonView({AffichageCommande.class, AfficheProduitClient.class})
   protected String nom;
 
   @Column(length = 15, nullable = false, unique = true)
   @Length(max = 15, min = 3, message = "Longueur entre 3 et 10")
   @NotBlank
-  @JsonView(AffichageCommande.class)
+  @JsonView({AffichageCommande.class, AfficheProduitAdmin.class})
   protected String code;
 
   @Column(columnDefinition = "TEXT")
