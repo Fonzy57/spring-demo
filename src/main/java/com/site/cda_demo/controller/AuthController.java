@@ -3,8 +3,8 @@ package com.site.cda_demo.controller;
 import com.site.cda_demo.dao.UtilisateurDao;
 import com.site.cda_demo.model.Utilisateur;
 import com.site.cda_demo.security.AppUserDetails;
+import com.site.cda_demo.security.ISecurityUtils;
 import com.site.cda_demo.security.Role;
-import com.site.cda_demo.security.SecurityUtils;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,10 +25,11 @@ public class AuthController {
   protected UtilisateurDao utilisateurDao;
   protected PasswordEncoder passwordEncoder;
   protected AuthenticationProvider authenticationProvider;
-  protected SecurityUtils securityUtils;
+  protected ISecurityUtils securityUtils;
 
   @Autowired
-  public AuthController(UtilisateurDao utilisateurDao, PasswordEncoder passwordEncoder, AuthenticationProvider authenticationProvider, SecurityUtils securityUtils) {
+  public AuthController(UtilisateurDao utilisateurDao, PasswordEncoder passwordEncoder,
+      AuthenticationProvider authenticationProvider, ISecurityUtils securityUtils) {
     this.utilisateurDao = utilisateurDao;
     this.passwordEncoder = passwordEncoder;
     this.authenticationProvider = authenticationProvider;
