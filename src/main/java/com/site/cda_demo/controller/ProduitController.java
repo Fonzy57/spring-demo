@@ -4,9 +4,9 @@ import com.site.cda_demo.dao.ProduitDao;
 import com.site.cda_demo.model.Etat;
 import com.site.cda_demo.model.Produit;
 import com.site.cda_demo.security.AppUserDetails;
+import com.site.cda_demo.security.ISecurityUtils;
 import com.site.cda_demo.security.IsAdministrateur;
 import com.site.cda_demo.security.IsUtilisateur;
-import com.site.cda_demo.security.SecurityUtils;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,10 +22,10 @@ import java.util.Optional;
 public class ProduitController {
 
   protected ProduitDao produitDao;
-  protected SecurityUtils securityUtils;
+  protected ISecurityUtils securityUtils;
 
   @Autowired // Donne à ProduitController le ProduitDao // Injection de dépendance
-  public ProduitController(ProduitDao produitDao, SecurityUtils securityUtils) {
+  public ProduitController(ProduitDao produitDao, ISecurityUtils securityUtils) {
     this.produitDao = produitDao;
     this.securityUtils = securityUtils;
   }
@@ -95,7 +95,7 @@ public class ProduitController {
     String role = securityUtils.getRole(userDetails);
 
     // Ici on autorise le role admin a supprimer un produit qui n'est pas à lui
-    if (!role.equals("ROLE_ADMINISTRATEUR") ||
+    if (!role.equals("ROLE_ADMINISTRATEUR") &&
         // Si l'id du créateur du produit est different de l'id de la personne connectée
         optionalProduit.get().getCreateur().getId() != userDetails.getUtilisateur().getId()) {
       return new ResponseEntity<>(HttpStatus.FORBIDDEN);
