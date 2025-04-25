@@ -27,7 +27,7 @@ public class Produit {
   protected String nom;
 
   @Column(length = 15, nullable = false, unique = true)
-  @Length(max = 15, min = 3)
+  @Length(max = 15, min = 3, message = "Longueur entre 3 et 10")
   @NotBlank
   @JsonView(AffichageCommande.class)
   protected String code;
