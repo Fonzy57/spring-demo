@@ -37,7 +37,18 @@ public class ProduitController {
    */
   @IsUtilisateur
   @GetMapping("/produits")
-  public List<Produit> getAll() {
+  public List<Produit> getAllAsUser() {
+    return produitDao.findAll();
+  }
+
+  /**
+   * Recupère tous les produits
+   *
+   * @return liste de produits
+   */
+  @IsAdministrateur
+  @GetMapping("/admin/produits")
+  public List<Produit> getAllAsAdmin() {
     return produitDao.findAll();
   }
 
@@ -111,8 +122,7 @@ public class ProduitController {
   @IsAdministrateur
   public ResponseEntity<Produit> update(
       @PathVariable int id,
-      @RequestBody @Valid Produit produit,
-      @AuthenticationPrincipal AppUserDetails userDetails) {
+      @RequestBody @Valid Produit produit) {
 
     Optional<Produit> optionalProduit = produitDao.findById(id);
 
@@ -121,7 +131,7 @@ public class ProduitController {
     }
 
     produit.setId(id);
-    produit.setCreateur(userDetails.getUtilisateur());
+    produit.setCreateur(optionalProduit.get().getCreateur());
     produitDao.save(produit);
 
     return new ResponseEntity<>(produit, HttpStatus.OK);
